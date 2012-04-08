@@ -4,17 +4,17 @@ public class LuhnValidation {
 
 	public void validate(String creditCardNumber) throws ValidationFailureException {
 		checkForIncorrectEntry(creditCardNumber);
-		long result = evaluateLuhnAlgorithm(creditCardNumber);
-		validateResult(result);
+		long result = evaluateChecksum(creditCardNumber);
+		validateChecksum(result);
 	}
 
-	public void validateResult(long result) throws ValidationFailureException {
+	public void validateChecksum(long result) throws ValidationFailureException {
 		if (result % 10 != 0){
 			throw new ValidationFailureException();
 		}
 	}
 
-	private long evaluateLuhnAlgorithm(String creditCardNumber) {
+	private long evaluateChecksum(String creditCardNumber) {
 		long luhnValue = 0;
 		creditCardNumber = StringHelper.removeSpaces(creditCardNumber);
 		int i = creditCardNumber.length() - 1;

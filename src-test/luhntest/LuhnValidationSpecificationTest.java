@@ -40,14 +40,14 @@ public class LuhnValidationSpecificationTest {
 	
 	@Test
 	public void shouldNotThrowExceptionForModulo10ResultOfZero() throws ValidationFailureException{
-		validator.validateResult(10L);
-		validator.validateResult(0L);
-		validator.validateResult(20L);
+		validator.validateChecksum(10L);
+		validator.validateChecksum(0L);
+		validator.validateChecksum(20L);
 	}
 	
 	@Test(expected=ValidationFailureException.class)
 	public void shouldThrowExceptionForModulo10ResultOfNonZero() throws ValidationFailureException{
-		validator.validateResult(11L);
+		validator.validateChecksum(11L);
 	}
 	
 	@Test
