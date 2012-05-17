@@ -1,7 +1,6 @@
-package luhntest;
+package luhn.validator.support;
 
-public class StringHelper {
-
+public class CharacterIdentifier {
 	public static boolean containsCharacters(String input) {
 		for (Character character : input.toCharArray()){
 			if(Character.isLetter(character)){
@@ -10,10 +9,4 @@ public class StringHelper {
 		}
 		return false;
 	}
-
-	public static String removeSpaces(String input) {
-		return input.replaceAll(" ", "");
-	}
-
-
 }

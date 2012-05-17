@@ -1,4 +1,4 @@
-package luhntest;
+package luhn;
 
 public class ValidationFailureException extends Exception {
 

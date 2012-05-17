@@ -1,64 +1,66 @@
-package luhntest;
+package luhn.validator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import luhn.ValidationFailureException;
+import luhn.validator.LuhnValidator;
 
 import org.junit.Before;
 import org.junit.Test;
 
 
-public class LuhnValidationSpecificationTest {
+public class LuhnValidatorSpecificationTest {
 
-	LuhnValidation validator;
+	LuhnValidator validator;
 	
 	@Before
 	public void setup(){
-		validator = new LuhnValidation();
+		validator = new LuhnValidator();
 	}
 	
 	@Test(expected=ValidationFailureException.class)
-	public void shouldThrowExceptionWhenNullIsChecked() throws ValidationFailureException{
+	public void throwsExceptionWhenNullIsChecked() throws ValidationFailureException{
 		validator.checkForIncorrectEntry(null);
 		
 	}
 
 	@Test(expected=ValidationFailureException.class)
-	public void shouldThrowExceptionWhenStringContainingCharactersIsChecked() throws ValidationFailureException{
+	public void throwsExceptionWhenStringContainingCharactersIsChecked() throws ValidationFailureException{
 		validator.checkForIncorrectEntry("123X123");
 	}
 	
 	@Test
-	public void shouldNotThrowExceptionWhenNumericsIsChecked() throws ValidationFailureException{
+	public void doesntThrowExceptionWhenNumericsIsChecked() throws ValidationFailureException{
 		validator.checkForIncorrectEntry("123");
 	}
 
 	@Test
-	public void shouldNotThrowExceptionWhenNumericsWithSpacesIsChecked() throws ValidationFailureException{
+	public void doesntThrowExceptionWhenNumericsWithSpacesIsChecked() throws ValidationFailureException{
 		validator.checkForIncorrectEntry("123 123");
 	}
 	
 	@Test
-	public void shouldNotThrowExceptionForModulo10ResultOfZero() throws ValidationFailureException{
+	public void doesntThrowExceptionForModulo10ResultOfZero() throws ValidationFailureException{
 		validator.validateChecksum(10L);
 		validator.validateChecksum(0L);
 		validator.validateChecksum(20L);
 	}
 	
 	@Test(expected=ValidationFailureException.class)
-	public void shouldThrowExceptionForModulo10ResultOfNonZero() throws ValidationFailureException{
+	public void doesntThrowExceptionForModulo10ResultOfNonZero() throws ValidationFailureException{
 		validator.validateChecksum(11L);
 	}
 	
 	@Test
-	public void shouldReturnTrueForEverySecondDigitFromTheRightmostWithinString(){
+	public void returnsTrueForEverySecondDigitFromTheRightmostWithinString(){
 		String testString = "ABCDE";
 		assertTrue(validator.characterAtIndexShouldBeDoubled(testString,3));
 		assertTrue(validator.characterAtIndexShouldBeDoubled(testString,1));
 	}
 	
 	@Test
-	public void shouldReturnFalseForEveryOtherDigitFromTheRightmostWithinString(){
+	public void returnsFalseForEveryOtherDigitFromTheRightmostWithinString(){
 		String testString = "ABCDE";
 		assertFalse(validator.characterAtIndexShouldBeDoubled(testString,4));
 		assertFalse(validator.characterAtIndexShouldBeDoubled(testString,2));
@@ -67,7 +69,7 @@ public class LuhnValidationSpecificationTest {
 	}
 	
 	@Test 
-	public void shouldCalculateDoubledValueWhereResultIsSingleDigit(){
+	public void calculatesDoubledValueWhereResultIsSingleDigit(){
 		assertEquals(2, validator.calculateDoubledValue("1"));
 		assertEquals(4, validator.calculateDoubledValue("2"));
 		assertEquals(6, validator.calculateDoubledValue("3"));
@@ -75,7 +77,7 @@ public class LuhnValidationSpecificationTest {
 	}
 	
 	@Test
-	public void shouldCalculateDoubledValueAndAddDigitsWhereResultIsTwoDigits(){
+	public void calculatesDoubledValueAndAddDigitsWhereResultIsTwoDigits(){
 		assertEquals(1, validator.calculateDoubledValue("5"));
 		assertEquals(3, validator.calculateDoubledValue("6"));
 		assertEquals(5, validator.calculateDoubledValue("7"));

@@ -1,22 +1,20 @@
-package luhntest;
+package luhn.validator;
 
-public class LuhnValidation {
+import luhn.ValidationFailureException;
+import luhn.validator.support.CharacterIdentifier;
+import luhn.validator.support.StringSpaceRemover;
 
-	public void validate(String creditCardNumber) throws ValidationFailureException {
-		checkForIncorrectEntry(creditCardNumber);
-		long result = evaluateChecksum(creditCardNumber);
-		validateChecksum(result);
-	}
+public class LuhnValidator {
 
 	public void validateChecksum(long result) throws ValidationFailureException {
 		if (result % 10 != 0){
 			throw new ValidationFailureException();
 		}
-	}
+	} 
 
-	private long evaluateChecksum(String creditCardNumber) {
+	public long evaluateChecksum(String creditCardNumber) {
 		long luhnValue = 0;
-		creditCardNumber = StringHelper.removeSpaces(creditCardNumber);
+		creditCardNumber = StringSpaceRemover.removeSpaces(creditCardNumber);
 		int i = creditCardNumber.length() - 1;
 		
 		while(i>=0){
@@ -48,7 +46,7 @@ public class LuhnValidation {
 	}
 
 	public void checkForIncorrectEntry(String creditCardNumber) throws ValidationFailureException {
-		if (creditCardNumber == null  || StringHelper.containsCharacters(creditCardNumber)){
+		if (creditCardNumber == null  || CharacterIdentifier.containsCharacters(creditCardNumber)){
 			throw new ValidationFailureException();
 		}
 		
