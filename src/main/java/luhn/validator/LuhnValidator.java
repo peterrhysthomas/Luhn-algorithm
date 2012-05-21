@@ -46,7 +46,9 @@ public class LuhnValidator {
 	}
 
 	public void checkForIncorrectEntry(String creditCardNumber) throws ValidationFailureException {
-		if (creditCardNumber == null  || CharacterIdentifier.containsCharacters(creditCardNumber)){
+		if (creditCardNumber == null  ||
+			creditCardNumber.equals("") ||
+		    CharacterIdentifier.containsCharacters(creditCardNumber)){
 			throw new ValidationFailureException();
 		}
 		

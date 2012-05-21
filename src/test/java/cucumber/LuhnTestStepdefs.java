@@ -55,4 +55,9 @@ public class LuhnTestStepdefs {
 	public void I_verify_a_credit_card_number_containing_alphanumeric_characters() {
 		creditCardNumber = "5420 1138X4111A9649";
 	}
+	
+	@When("^I verify a blank credit card number$")
+	public void I_verify_a_blank_credit_card_number() {
+		creditCardNumber = "";
+	}
 }

@@ -40,6 +40,11 @@ public class LuhnValidatorSpecificationTest {
 		validator.checkForIncorrectEntry("123 123");
 	}
 	
+	@Test(expected=ValidationFailureException.class)
+	public void throwsExceptionWhenBlankStringIsChecked() throws ValidationFailureException{
+		validator.checkForIncorrectEntry("");
+	}
+	
 	@Test
 	public void doesntThrowExceptionForModulo10ResultOfZero() throws ValidationFailureException{
 		validator.validateChecksum(10L);
