@@ -1,4 +1,4 @@
-package cucumber;
+package luhn;
 
 import luhn.LuhnValidationController;
 import luhn.ValidationFailureException;

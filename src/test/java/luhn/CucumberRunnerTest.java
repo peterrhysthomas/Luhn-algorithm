@@ -1,4 +1,4 @@
-package cucumber;
+package luhn;
 
 import org.junit.runner.RunWith;
 
