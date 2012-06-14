@@ -1,5 +1,8 @@
 target/
 bin/
 .settings/
+.idea/
 .project
 .classpath
+
+Luhntest.iml

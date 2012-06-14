@@ -1,0 +1,7 @@
+import luhn.validator.support.StringSpaceRemover
+
+//description "String Space Remover"
+
+it "should removes spaces from a string", {
+  StringSpaceRemover.removeSpaces(" ABC 123 ").shouldBe("ABC123")
+}
