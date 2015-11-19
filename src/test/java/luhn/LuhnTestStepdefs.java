@@ -1,12 +1,10 @@
 package luhn;
 
-import luhn.LuhnValidationController;
-import luhn.ValidationFailureException;
 
-
-import cucumber.annotation.Before;
-import cucumber.annotation.en.Then;
-import cucumber.annotation.en.When;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 import static org.junit.Assert.fail;
 
@@ -60,4 +58,15 @@ public class LuhnTestStepdefs {
 	public void I_verify_a_blank_credit_card_number() {
 		creditCardNumber = "";
 	}
+
+    @Given("^a credit card number of \"(.*)\"$")
+    public void a_credit_card_number_of(String ccNumber) throws Throwable {
+        creditCardNumber = ccNumber;
+    }
+
+    @When("^this is validated$")
+    public void this_is_validated() throws Throwable {
+        // do nothing here
+    }
+
 }
